@@ -67,3 +67,35 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
      http://localhost:3000/api
    ```
 
+## Authentication
+
+### Register
+
+- Endpoint: POST /api/register
+- Description: Registers a new user.
+
+  Request Body :
+  ```bash
+     {
+        "email": "<example@example.com>",
+        "password": "password123"
+     }
+
+  ```
+
+  Response Body :
+  - Status Code : 201
+  ```bash
+    {
+        message: "berhasil register"
+    }
+  ```
+
+  Error Response :
+    - Status Code : 400
+  ```bash
+    {
+        "message": "Email sudah terdaftar"
+    }
+  ```
+

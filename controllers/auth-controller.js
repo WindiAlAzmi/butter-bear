@@ -16,7 +16,7 @@ module.exports = {
       const isUserThere = await User.findOne({ email: data.email }).exec();
 
       if (isUserThere !== null) {
-        return res.status(409).json({ message: "Email sudah terdaftar" });
+        return res.status(400).json({ message: "Email sudah terdaftar" });
       } else {
         const newUser = new User(data);
         newUser.save();
@@ -26,7 +26,7 @@ module.exports = {
         });
       }
     } catch (error) {
-      res.json({ message: "Terjadi kesalahan" });
+      res.status(500).json({ message: "Terjadi kesalahan" });
     }
   },
   login: async (req, res) => {
@@ -34,13 +34,13 @@ module.exports = {
 
     const user = await User.findOne({ email: data.email }).exec();
     if (!user) {
-      res.json({ message: "ga ada email yg didaftarkan" });
+      res.status(404).json({ message: "tidak ada email yg didaftarkan" });
       return;
     }
 
     const checkPassword = bcrypt.compareSync(data.password, user.password);
     if (!checkPassword) {
-      res.json({ message: "password yg diberikan salah" });
+      res.status(401).json({ message: "password yg diberikan salah" });
       return;
     }
 
@@ -52,7 +52,7 @@ module.exports = {
       process.env.JWT_KEY
     );
 
-    res.json({
+    res.status(200).json({
       message: "berhasil login",
       token,
     });
