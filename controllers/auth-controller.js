@@ -2,54 +2,59 @@ require("dotenv").config();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-
 const User = require("../models/User");
 
 module.exports = {
   regis: async (req, res) => {
     const data = req.body;
 
-    //hash password
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(data.password, salt);
-    data.password = hash
+    data.password = hash;
 
-    const newUser = new User(data);
-    newUser.save();
+    try {
+      const isUserThere = await User.findOne({ email: data.email }).exec();
 
-    res.json({
-        message:"berhasil register"
-    })
+      if (isUserThere !== null) {
+        return res.status(409).json({ message: "Email sudah terdaftar" });
+      } else {
+        const newUser = new User(data);
+        newUser.save();
 
+        res.status(201).json({
+          message: "berhasil register",
+        });
+      }
+    } catch (error) {
+      res.json({ message: "Terjadi kesalahan" });
+    }
   },
-  login: async (req, res) => {  
+  login: async (req, res) => {
     const data = req.body;
 
-    //cari user di dalam db
-    const user = await User.findOne({username: data.username}).exec();
-    if(!user){
-        req.json({message : "gagal login"});
-        return;
+    const user = await User.findOne({ email: data.email }).exec();
+    if (!user) {
+      res.json({ message: "ga ada email yg didaftarkan" });
+      return;
     }
 
-    //cek password 
     const checkPassword = bcrypt.compareSync(data.password, user.password);
-    if(!checkPassword){
-          req.json({ message: "password yg diberikan salah" });
-          return;
+    if (!checkPassword) {
+      res.json({ message: "password yg diberikan salah" });
+      return;
     }
 
-    //buat token 
-    const token = jwt.sign({
-        username:user.username, name:user.name //payload
-    },
-      process.env.JWT_KEY  //secret key 
-    )
+    const token = jwt.sign(
+      {
+        email: user.email,
+        role: user.role,
+      },
+      process.env.JWT_KEY
+    );
 
     res.json({
-        message:"berhasil login",
-        token
-    })
-
+      message: "berhasil login",
+      token,
+    });
   },
 };
