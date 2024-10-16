@@ -16,7 +16,7 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
     - [Get Single TODO](#get-single-to-do)
     - [Update TODO](#update-to-do)
     - [Delete TODO](#delete-to-do)
-    - [Delete All TODO](#delete-to-do)
+    - [Delete All TODO](#delete-all-to-do)
 
 
 ---
@@ -99,8 +99,6 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
     }
   ```
 
-## TODO
-
 ### Login
 
 - Endpoint: POST /api/auth/regis
@@ -142,7 +140,10 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
     }
   ```
 
-### Get TODO List
+## TODO
+
+
+### Get TO-DO List
 
 - Endpoint: GET /api/todos
 - Description: get all data todo
@@ -158,7 +159,7 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
     }
   ```
 
-### Create TODO 
+### Create To-Do
 
 - Endpoint: POST /api/todos
 - Description: create 1 data todo
@@ -182,7 +183,7 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
     }
   ```
 
-### Get Single TODO
+### Get Single TO-DO
 
 - Endpoint: GET /api/todos/{id}
 - Description: get single data
@@ -225,7 +226,7 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
     }
   ```
 
-### Update TODO
+### Update TO-DO
 
 - Endpoint: PUT /api/todos/{id}
 - Description: edit 1 data
@@ -269,7 +270,7 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
     }
   ```
 
-### Delete TODO
+### Delete TO-DO
 
 - Endpoint: DEL /api/todos/{id}
 - Description: delete 1 data
@@ -302,7 +303,7 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
     }
   ```
 
-### Delete ALL TODO
+### Delete ALL TO-DO
 
 - Endpoint: DEL /api/todos
 - Description: delete all data
