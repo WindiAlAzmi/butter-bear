@@ -45,10 +45,14 @@ module.exports = {
   deleteTodoById: async (req, res) => {
     const { id } = req.params;
 
-    await Todo.findByIdAndDelete(id);
-    res.json({
-      message: "Data berhasil dihapus",
-    });
+    try{
+      await Todo.findByIdAndDelete(id);
+      res.json({
+        message: "Data berhasil dihapus",
+      });
+    }catch(err){
+
+    }
   },
   deleteAllTodo: async (req, res) => {
     await Todo.deleteMany({});
