@@ -5,13 +5,17 @@ const {
   addMovie,
   editMovieById,
   deleteMovieById,
+  deleteAllMovies,
 } = require("../controllers/movie-controller");
-const route = express.Router();
+const { validateToken } = require("../middleware/auth");
 
-route.get("/", getAllMovie);
-route.get("/:id", getMovieById);
-route.post("/", addMovie);
-route.put("/:id", editMovieById);
-route.delete("/:id", deleteMovieById);
+const router = express.Router();
 
-module.exports = route;
+router.get("/", getAllMovie);
+router.get("/:id", getMovieById);
+router.post("/", validateToken, addMovie);
+router.put("/:id", validateToken, editMovieById);
+router.delete("/:id", validateToken, deleteMovieById);
+router.delete("/", validateToken, deleteAllMovies);
+
+module.exports = router;
