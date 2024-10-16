@@ -1,4 +1,4 @@
-# To-Do List API with Authentication (Login & Register)
+# TODO List API with Authentication (Login & Register)
 
 This is a RESTful API built with **Node.js** and **Express.js** that provides user authentication (login and register) and management of personal to-do lists. Authentication is handled using **JWT (JSON Web Tokens)**.
 
@@ -10,14 +10,14 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
 2. [Authentication](#authentication)
     - [Register](#register)
     - [Login](#login)
-3. [To-Do Management](#to-do-management)
-    - [Create To-Do](#create-to-do)
-    - [Get To-Do List](#get-to-do-list)
-    - [Get Single To-Do](#get-single-to-do)
-    - [Update To-Do](#update-to-do)
-    - [Delete To-Do](#delete-to-do)
-4. [Authentication Tokens](#authentication-tokens)
-5. [Error Responses](#error-responses)
+3. [TODO](#TODO)
+    - [Create TODO](#create-to-do)
+    - [Get TODO List](#get-to-do-list)
+    - [Get Single TODO](#get-single-to-do)
+    - [Update TODO](#update-to-do)
+    - [Delete TODO](#delete-to-do)
+    - [Delete All TODO](#delete-to-do)
+
 
 ---
 
@@ -71,7 +71,7 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
 
 ### Register
 
-- Endpoint: POST /api/register
+- Endpoint: POST /api/auth/register
 - Description: Registers a new user.
 
   Request Body :
@@ -99,3 +99,217 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
     }
   ```
 
+### Login
+
+- Endpoint: POST /api/auth/regis
+- Description: Login 
+
+  Request Body :
+
+  ```bash
+     {
+        "email": "<example@example.com>",
+        "password": "password123"
+     }
+
+  ```
+
+  Response Body :
+  - Status Code : 201
+
+  ```bash
+    {
+        message: "berhasil Login"
+    }
+  ```
+
+  Error Response :
+  - Status Code : 404
+
+  ```bash
+    {
+        "message": "tidak ada email yg didaftarkan"
+    }
+  ```
+
+  - Status Code : 401
+
+  ```bash
+    {
+        "message": "password yg diberikan salah"
+    }
+  ```
+
+### Get TODO List
+
+- Endpoint: GET /api/todos
+- Description: get all data todo
+
+
+  Response Body :
+  - Status Code : 200
+
+  ```bash
+    {
+          "message": "Data berhasil ditemukan",
+          "data":[]
+    }
+  ```
+
+### Create TODO 
+
+- Endpoint: POST /api/todos
+- Description: create 1 data todo
+
+  Request Body :
+
+  ```bash
+     {
+        "title": "lorem ipsum",
+        "description": "lorem ipsum",
+        "completed":false  
+    }
+  ```
+
+  Response Body :
+  - Status Code : 200
+
+  ```bash
+    {
+          "message": "Data berhasil ditambahkan"
+    }
+  ```
+
+### Get Single TODO
+
+- Endpoint: GET /api/todos/{id}
+- Description: get single data
+
+  Request Body :
+
+  ```bash
+     {
+        "email": "<example@example.com>",
+        "password": "password123"
+     }
+
+  ```
+
+  Response Body :
+  - Status Code : 200
+
+  ```bash
+    {
+       message: "1 Data todo berhasil ditemukan",
+       data:{}
+    }
+  ```
+
+  Error Response :
+  - Status Code : 404
+
+  ```bash
+    {
+         message: "Data tidak ditemukan"
+    }
+  ```
+
+  - Status Code : 500
+
+  ```bash
+    {
+        message: "Terjadi kesalahan saat menghapus data",
+        error:""
+    }
+  ```
+
+### Update TODO
+
+- Endpoint: PUT /api/todos/{id}
+- Description: edit 1 data
+
+  Request Body :
+
+  ```bash
+    {
+      "title": "lorem ipsum",
+      "description": "lorem ipsum",
+      "completed":true
+    }
+
+  ```
+
+  Response Body :
+  - Status Code : 200
+
+  ```bash
+    {
+       message: "Data berhasil diubah",
+       data:{}
+    }
+  ```
+
+  Error Response :
+  - Status Code : 404
+
+  ```bash
+    {
+        message: "Data tidak ditemukan"
+    }
+  ```
+
+  - Status Code : 500
+
+  ```bash
+    {
+        message: "Terjadi kesalahan saat menghapus data",
+        error:""
+    }
+  ```
+
+### Delete TODO
+
+- Endpoint: DEL /api/todos/{id}
+- Description: delete 1 data
+
+
+  Response Body :
+  - Status Code : 200
+
+  ```bash
+    {
+        message: "Data berhasil dihapus"
+    }
+  ```
+
+  Error Response :
+  - Status Code : 404
+
+  ```bash
+    {
+        message: "Data tidak ditemukan"
+    }
+  ```
+
+  - Status Code : 500
+
+  ```bash
+    {
+        message: "Terjadi kesalahan saat menghapus data",
+        error:""
+    }
+  ```
+
+### Delete ALL TODO
+
+- Endpoint: DEL /api/todos
+- Description: delete all data
+
+  Response Body :
+  - Status Code : 200
+
+  ```bash
+    {
+       message: "Semua data todo berhasil dihapus"
+    }
+  ```

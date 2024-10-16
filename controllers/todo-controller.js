@@ -20,11 +20,11 @@ module.exports = {
          });
        }
 
-      res.json({
+      res.status(200).json({
         message: "1 Data todo berhasil ditemukan",
         data: getDataById,
       });
-      
+
     }catch(error){
       res.status(500).json({
         message: "Terjadi kesalahan saat menghapus data",
