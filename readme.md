@@ -64,14 +64,14 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
    The API will be running at:
 
    ```bash
-     http://localhost:3000/api
+     http://localhost:3000/todos
    ```
 
 ## Authentication
 
 ### Register
 
-- Endpoint: POST /api/auth/register
+- Endpoint: POST /api/auth/regis
 - Description: Registers a new user.
 
   Request Body :
@@ -101,7 +101,7 @@ This is a RESTful API built with **Node.js** and **Express.js** that provides us
 
 ### Login
 
-- Endpoint: POST /api/auth/regis
+- Endpoint: POST /api/auth/login
 - Description: Login 
 
   Request Body :
